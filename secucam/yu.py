@@ -7,7 +7,9 @@ def main():
     directory = os.path.dirname(__file__)
 
     #capture = cv2.VideoCapture(1) # カメラ
-    capture = cv2.VideoCapture('secucam/VIDEO-2023-01-27-08-05-34.mp4')
+    capture = cv2.VideoCapture(1)
+    
+    
     if not capture.isOpened():
         exit()
     
@@ -63,7 +65,7 @@ def main():
 
         # 画像を表示する
         cv2.imshow("face detection", image)
-        key = cv2.waitKey(10)
+        key = cv2.waitKey(1)
         if key == ord('q'):
             break
     
