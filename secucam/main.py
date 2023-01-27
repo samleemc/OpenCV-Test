@@ -27,7 +27,7 @@ def resizeFrame(frame):
     return cv.resize(cropped,(1280,720),interpolation=cv.INTER_LINEAR)
      
 
-capture = cv.VideoCapture(0)
+capture = cv.VideoCapture(1)
 
 scale = int(input('Please provide scale\n'))
 
