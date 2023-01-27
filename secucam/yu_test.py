@@ -5,7 +5,7 @@ import os
 directory = os.path.dirname(__file__)
 
 capture = cv.VideoCapture(1)
-capture = cv.VideoCapture(os.path.join(directory,'IMG_5035-HD.mov'))
+# capture = cv.VideoCapture('/Users/sam/Downloads/python/OpenCV-Test/secucam/IMG_5035-HD.mov')
 
 
 
