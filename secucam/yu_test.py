@@ -5,7 +5,7 @@ import os
 directory = os.path.dirname(__file__)
 
 capture = cv.VideoCapture(1)
-# capture = cv.VideoCapture('/Users/sam/Downloads/IMG_3184.MOV')
+capture = cv.VideoCapture(os.path.join(directory,'IMG_5035-HD.mov'))
 
 
 
@@ -15,6 +15,8 @@ faceDetector = cv.FaceDetectorYN_create(fd_model,"",(0,0))
 
 fr_model = os.path.join(directory,"face_recognition_sface_2021dec.onnx")
 recognizer = cv.FaceRecognizerSF.create(fr_model,"")
+
+# writer= cv.VideoWriter('basicvideo.mp4', cv.VideoWriter_fourcc(*'mp4v'), 10, (1920,1080))
 
 targets = ['mum.jpg','jayden.jpg','sam.jpg','nicole.jpg']
 targets_align = {}
@@ -36,6 +38,7 @@ for target in targets:
 
 while True:
     result, image = capture.read()
+    
     if result is False:
         break
     
@@ -81,12 +84,13 @@ while True:
             cv.putText(image, isMatch_name, position, font, scale, color, thickness, cv.LINE_AA)
                 
 
-    
+    # writer.write(image)
     cv.imshow('test',image)
     
     key = cv.waitKey(1)
     if key == 27:
         break
-    
+ 
+# writer.release()   
 capture.release()
 cv.destroyAllWindows()
