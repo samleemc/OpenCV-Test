@@ -1,4 +1,6 @@
 import cv2 as cv
+import os
+
 
 capture = cv.VideoCapture(1)
 capture2 = cv.VideoCapture('secucam/IMG_5035-HD.mov')
