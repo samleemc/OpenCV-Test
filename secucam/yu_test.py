@@ -22,7 +22,7 @@ targets_align = {}
 targets_feature = {}
 # Get target faces feature
 for target in targets:
-    filepath = os.path.join('/Users/sam/Downloads/data/faces',f'{target}')
+    filepath = os.path.join('data/faces',f'{target}')
     name = target[:-4]
     target_image = cv.imread(filepath)
     height, width, _ = target_image.shape
