@@ -43,7 +43,12 @@ while True:
     if result is False:
         break
     
-    image = cv.resize(original_image,(640,320),interpolation=cv.INTER_AREA)
+    original_height, original_width, _ = original_image.shape
+    scale = 0.5
+    resize_height = int(original_height*scale)
+    resize_width = int(original_width*scale)
+    
+    image = cv.resize(original_image,(resize_width,resize_height),interpolation=cv.INTER_AREA)
     
     height, width, _ = image.shape
     faceDetector.setInputSize((width, height))
