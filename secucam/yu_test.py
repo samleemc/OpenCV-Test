@@ -1,13 +1,12 @@
 import numpy as np
 import cv2 as cv
 import os
+import datetime
 
 directory = os.path.dirname(__file__)
 
 capture = cv.VideoCapture(1)
 # capture = cv.VideoCapture('/Users/sam/Downloads/python/OpenCV-Test/secucam/IMG_5035-HD.mov')
-
-
 
 # Load face detector and recognizer
 fd_model = os.path.join(directory,"face_detection_yunet_2022mar.onnx")
@@ -23,8 +22,9 @@ targets_align = {}
 targets_feature = {}
 # Get target faces feature
 for target in targets:
+    filepath = os.path.join('/Users/sam/Downloads/data/faces',f'{target}')
     name = target[:-4]
-    target_image = cv.imread(os.path.join(directory,f'{target}'))
+    target_image = cv.imread(filepath)
     height, width, _ = target_image.shape
     faceDetector.setInputSize((width, height))
     result, target_face = faceDetector.detect(target_image)
@@ -37,10 +37,13 @@ for target in targets:
     
 
 while True:
-    result, image = capture.read()
+    start_time = datetime.datetime.now()
+    result, original_image = capture.read()
     
     if result is False:
         break
+    
+    image = cv.resize(original_image,(640,320),interpolation=cv.INTER_AREA)
     
     height, width, _ = image.shape
     faceDetector.setInputSize((width, height))
@@ -87,9 +90,11 @@ while True:
     # writer.write(image)
     cv.imshow('test',image)
     
-    key = cv.waitKey(1)
+    key = cv.pollKey()
     if key == 27:
         break
+    end_time = datetime.datetime.now()
+    print(str((end_time - start_time).microseconds//1000) + 'ms')
  
 # writer.release()   
 capture.release()

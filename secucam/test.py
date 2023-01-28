@@ -1,14 +1,10 @@
-import cv2 as cv
-import os 
+import datetime
+import time
 
-file = 'sam.jpg'
+a = datetime.datetime.now()
+time.sleep(3)
+b = datetime.datetime.now()
 
-path = os.path.dirname(__file__)
+c = b - a
 
-print(os.path.join(path,file))
-
-x = cv.imread(os.path.join(path,file))
-
-cv.imshow('sam',x)
-
-cv.waitKey(0)
+print(c.microseconds)
