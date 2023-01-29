@@ -1,10 +1,5 @@
-import datetime
-import time
+from pathlib import Path
 
-a = datetime.datetime.now()
-time.sleep(3)
-b = datetime.datetime.now()
+path = Path('/Users/sam/Downloads/python/OpenCV-Test/data/faces')    
+print(list(f for f in Path(path).iterdir() if f.is_file()))
 
-c = b - a
-
-print(c.microseconds)
